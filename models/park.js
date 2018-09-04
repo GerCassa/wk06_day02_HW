@@ -12,8 +12,9 @@ Park.prototype.addDinosaur = function (dinosaur) {
   this.collection.push(dinosaur)
 };
 
-Park.prototype.removeDinosaur = function () {
-  this.collection.pop();
+Park.prototype.removeDinosaur = function(dinosaurToRemove) {
+  const index = this.collection.indexOf(dinosaurToRemove);
+  this.collection.splice(index, 1);
 };
 
 Park.prototype.popularDinosaur = function () {
@@ -34,6 +35,14 @@ Park.prototype.findDinosaur = function (species) {
     }
   }
   return foundDino;
+};
+
+Park.prototype.deleteDinosaurSpecies = function (species) {
+  let foundDino = this.findDinosaur(species);
+  for (dinosaur of foundDino) {
+    this.removeDinosaur(dinosaur);
+  }
+  return this.collection;
 };
 
 
